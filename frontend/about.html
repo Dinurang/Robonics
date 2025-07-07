@@ -45,17 +45,29 @@
       font-weight: 600;
     }
 
-  .highlight {
-  background: linear-gradient(to right, #9b59b6, #8e44ad);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  display: inline-block; /* Ensures gradient applies to text */
-}
+    .highlight {
+      background: linear-gradient(to right, #9b59b6, #8e44ad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+
+    .about-description {
+      font-size: 1.3rem;
+      font-weight: 500;
+      line-height: 1.7;
+    }
+
+    .section-text {
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
 
     .list-group-item {
       background-color: #29294d;
       border: none;
       color: #e6e6ff;
+      font-size: 0.9rem;
     }
 
     footer {
@@ -66,7 +78,7 @@
     }
 
     img.logo {
-      height: 50px;
+      height: 80px;
       margin-right: 10px;
     }
 
@@ -83,7 +95,6 @@
   <nav class="navbar navbar-expand-lg navbar-dark px-4">
     <a class="navbar-brand d-flex align-items-center" href="index.html">
       <img src="assets/logo.png" alt="Robonics Logo" class="logo">
-      Robonics
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
       <span class="navbar-toggler-icon"></span>
@@ -104,25 +115,26 @@
   <!-- Main Content -->
   <main class="container py-5">
     <h1 class="text-center mb-5" data-aos="fade-up">
-  <span class="highlight">About Robonics</span>
+      <span class="highlight">About Robonics</span>
+    </h1>
 
     <div class="row align-items-center mb-5" data-aos="fade-up" data-aos-delay="100">
       <div class="col-md-6 img-section">
         <img src="assets/logo.png" class="img-fluid" alt="Robonics" />
       </div>
       <div class="col-md-6">
-        <p class="lead">Robonics is a Sri Lankan-born startup committed to creating cutting-edge intelligent systems for automation, robotics, and AI. With a team of passionate developers, engineers, and thinkers, we’re building smarter, sustainable solutions for tomorrow’s world.</p>
+        <p class="about-description">Robonics is a Sri Lankan-born startup committed to creating cutting-edge intelligent systems for automation, robotics, and AI. With a team of passionate developers, engineers, and thinkers, we’re building smarter, sustainable solutions for tomorrow’s world.</p>
       </div>
     </div>
 
     <div class="row g-5">
       <div class="col-md-6" data-aos="fade-right">
         <h2>Our Mission</h2>
-        <p>To develop innovative, accessible, and intelligent robotics solutions that empower businesses and transform everyday life through automation.</p>
+        <p class="section-text">To develop innovative, accessible, and intelligent robotics solutions that empower businesses and transform everyday life through automation.</p>
       </div>
       <div class="col-md-6" data-aos="fade-left">
         <h2>Our Vision</h2>
-        <p>To be a global leader in robotic innovation by driving sustainable, user-focused automation and AI integration across industries.</p>
+        <p class="section-text">To be a global leader in robotic innovation by driving sustainable, user-focused automation and AI integration across industries.</p>
       </div>
     </div>
 
