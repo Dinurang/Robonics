@@ -1,29 +1,21 @@
-const form = document.getElementById("contact-form");
-const responseMessage = document.getElementById("response-message");
-
-form.addEventListener("submit", async (e) => {
+document.getElementById("contactForm").addEventListener("submit", async function (e) {
   e.preventDefault();
 
-  const formData = {
-    name: form.name.value,
-    email: form.email.value,
-    message: form.message.value
-  };
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const message = document.getElementById("message").value.trim();
 
-  try {
-    const res = await fetch("http://localhost:5000/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData)
-    });
+  const response = await fetch("http://localhost:3000/api/contact", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, email, message }),
+  });
 
-    const data = await res.json();
-    responseMessage.innerText = data.message;
-    responseMessage.style.color = "green";
-    form.reset();
-  } catch (err) {
-    console.error(err);
-    responseMessage.innerText = "Failed to send message.";
-    responseMessage.style.color = "red";
+  const data = await response.json();
+  if (data.success) {
+    alert("✅ Message sent successfully!");
+    this.reset();
+  } else {
+    alert("❌ Failed to send message: " + data.message);
   }
 });

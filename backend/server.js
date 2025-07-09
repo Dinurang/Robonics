@@ -1,24 +1,22 @@
-const express = require("express");
-const cors = require("cors");
-const contactRoutes = require("./routes/contact");
-require("dotenv").config();
-
+const express = require('express');
+const cors = require('cors');
 const app = express();
+const port = 3000;
 
-// Middleware
 app.use(cors());
-app.use(express.json());
+app.use(express.json()); // ✅ Built-in JSON body parser
+app.use(express.urlencoded({ extended: true })); // ✅ For form submissions
 
-// Routes
-app.use("/api/contact", contactRoutes);
+const bookRoutes = require('./routes/book');
+const contactRoutes = require('./routes/contact');
+const trackRoutes = require('./routes/track');
+const adminRoutes = require('./routes/admin');
 
-// Root route
-app.get("/", (req, res) => {
-  res.send("Welcome to Robonics Backend!");
-});
+app.use('/api/book', bookRoutes);
+app.use('/api/contact', contactRoutes);
+app.use('/api/track', trackRoutes);
+app.use('/api/admin', adminRoutes);
 
-// Start server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+app.listen(port, () => {
+  console.log(`🚀 Server running at http://localhost:${port}`);
 });
