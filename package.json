@@ -1,0 +1,17 @@
+{
+  "name": "robonics-app",
+  "version": "V2025.12",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon BackEnd/server.js",
+    "start": "node BackEnd/server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "mysql2": "^3.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
