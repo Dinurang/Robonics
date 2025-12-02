@@ -6,7 +6,7 @@ import Home from "./commonend/home.jsx";
 // import Book from "./commonend/book.jsx";
 // import Contact from "./commonend/contact.jsx";
 // import Login from "./commonend/login.jsx";
-// import Register from "./commonend/register.jsx";
+ import Register from "./userend/register.jsx";
 // import Projects from "./commonend/projects.jsx";
 // import Pricing from "./commonend/pricing.jsx";
 
@@ -21,8 +21,8 @@ export default function AppRoutes() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
         <Route path="/pricing" element={<Pricing />} />
-        <Route path="/projects" element={<Projects />} />
-        <Route path="/register" element={<Register />} /> */}
+        <Route path="/projects" element={<Projects />} />*/}
+        <Route path="/register" element={<Register />} /> 
         <Route path="*" element={<Home />} />
         </Routes>
     </Router>

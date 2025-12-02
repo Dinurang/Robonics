@@ -65,7 +65,7 @@ const Home = () => {
                   <a className="nav-link btn-login" href="/login">Log In</a>
                 </li>
                 <li className="nav-item auth-buttons">
-                  <a className="nav-link btn-signup" href="/signup">Sign Up</a>
+                  <a className="nav-link btn-signup" href="/register">Register</a>
                 </li>
               </ul>
             </div>
