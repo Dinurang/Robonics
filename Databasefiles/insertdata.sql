@@ -1,7 +1,12 @@
+-- NOTE: prototype password  = qweasd
+-- It is BCRYPT hashed and stored below.
+
+
+
 -- Insert data into the first table (adminID, useremail, password, role)
-INSERT INTO admin_table (adminID, useremail, password, role) 
-VALUES (1, 'admin@example.com', 'securepassword123', 'Administrator');
+INSERT INTO admin (adminemail, password, role) 
+VALUES ( 'admin@gmail.com', '$2a$12$Oc/l7IjqJeJhN1hyCj0Oc.BG0MbZU.rT/AbrIQ2QLqZ3CU7IVl0Z.', 'Administrator');
 
 -- Insert data into the second table (userID, username, password, whatsappNo, postal_address, role)
-INSERT INTO user_table (userID, username, password, whatsappNo, postal_address, role) 
-VALUES (101, 'john_doe', 'mypassword456', '+1234567890', '123 Main St, City, Country', 'User');
+INSERT INTO user (username, password, whatsappNo, postal_address, role) 
+VALUES ('dinura1ginige@gmail.com', '$2a$12$Oc/l7IjqJeJhN1hyCj0Oc.BG0MbZU.rT/AbrIQ2QLqZ3CU7IVl0Z.', '0778812345', '123 Main St, Colombo', 'User');

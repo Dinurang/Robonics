@@ -1,3 +1,12 @@
+-- drop table project;
+-- drop table user;
+-- drop table project_documentation_files;
+-- drop table payment_proof_files;
+-- drop table payment;
+-- drop table pricing;
+-- drop table project_data;
+-- drop table admin;
+
 -- Users table
 CREATE TABLE user (
     userID INT AUTO_INCREMENT PRIMARY KEY,
@@ -71,7 +80,7 @@ CREATE TABLE project_data (
 -- Admin table
 CREATE TABLE admin (
     adminID INT AUTO_INCREMENT PRIMARY KEY,
-    useremail VARCHAR(100),
+    adminemail VARCHAR(100),
     password VARCHAR(255),
     role VARCHAR(20) NOT NULL
 );
@@ -82,3 +91,12 @@ CREATE TABLE pricing (
     pricing NUMERIC(10,2),
     duration INT
 );
+
+
+
+
+
+
+
+
+
