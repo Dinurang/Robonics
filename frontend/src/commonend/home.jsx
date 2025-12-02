@@ -58,7 +58,7 @@ const Home = () => {
                   <a className="nav-link" href="/contact">Contact</a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/contact">Book</a>
+                  <a className="nav-link" href="/book">Book</a>
                 </li>
                 {/* Auth Buttons with different styling */}
                 <li className="nav-item auth-buttons">
@@ -202,7 +202,8 @@ const Home = () => {
                 <ul className="footer-links">
                   <li><a href="/about">About Us</a></li>
                   <li><a href="/projects">Our Projects</a></li>
-                  <li><a href="/team">Our Team</a></li>
+                  <li><a href="/pricing">Our Team</a></li>
+                  <li><a href="/book">Contact Us</a></li>
                   <li><a href="/contact">Contact Us</a></li>
                 </ul>
               </div>
