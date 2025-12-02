@@ -127,9 +127,17 @@ const Home = () => {
               </div>
               <div className="col-md-4" data-aos="fade-up" data-aos-delay="300">
                 <div className="feature-card">
-                  <div className="feature-icon">🌍</div>
-                  <h3>Sustainable Solutions</h3>
-                  <p>Eco-friendly automation solutions designed for long-term sustainability and efficiency.</p>
+                  <div className="feature-icon">🖨️</div>
+                  <h3>3D Design & Printing</h3>
+                  <p>Custom robotic parts and prototypes created with cutting-edge 3D modeling and printing technologies.</p>
+                </div>
+              </div>
+
+              <div className="col-md-4" data-aos="fade-up" data-aos-delay="400">
+                <div className="feature-card">
+                  <div className="feature-icon">🔧</div>
+                  <h3>Custom Solutions</h3>
+                  <p>Tailored robotic systems designed to meet specific industry requirements and challenges.</p>
                 </div>
               </div>
             </div>
@@ -164,6 +172,15 @@ const Home = () => {
                   <p>Intelligent navigation systems for challenging environments.</p>
                 </div>
               </div>
+
+              <div className="col-md-4" data-aos="zoom-in" data-aos-delay="600">
+                <div className="showcase-card">
+                  <img src={obstacleRobot} alt="Obstacle Robot" className="showcase-image" />
+                  <h4 className="mt-3">Static and Dynamic 3D</h4>
+                  <p>Prototype parts for developments and projects.</p>
+                </div>
+              </div>
+
             </div>
           </div>
         </section>
@@ -173,13 +190,13 @@ const Home = () => {
           <div className="container text-center">
             <h2 className="mb-4">Ready to Automate Your Future?</h2>
             <p className="cta-description mb-4">
-              Join hundreds of satisfied clients who have transformed their operations with Robonics solutions.
+              Join the community of satisfied clients who have transformed their requirements with Robonics solutions.
             </p>
             <div className="cta-buttons">
               <a href="/contact" className="btn btn-lg btn-primary me-3">
                 Start Your Project
               </a>
-              <a href="/pricing" className="btn btn-lg btn-outline-light">
+              <a href="/pricing" className="btn btn-lg btn-primary me-3">
                 View Pricing
               </a>
             </div>
@@ -193,17 +210,17 @@ const Home = () => {
               <div className="col-md-4">
                 <div className="footer-brand d-flex align-items-center mb-3">
                   <img src={logo} alt="Robonics Logo" className="logo-only me-2" />
-                  <h5>Robonics</h5>
+                  
                 </div>
-                <p>Leading the revolution in intelligent robotics and automation solutions.</p>
+                <p>Leading the innovation in robotics and 3D drawing solutions.</p>
               </div>
               <div className="col-md-4">
                 <h5>Quick Links</h5>
                 <ul className="footer-links">
                   <li><a href="/about">About Us</a></li>
                   <li><a href="/projects">Our Projects</a></li>
-                  <li><a href="/pricing">Our Team</a></li>
-                  <li><a href="/book">Contact Us</a></li>
+                  <li><a href="/pricing">Our Pricing</a></li>
+                  <li><a href="/book">Get a Quote</a></li>
                   <li><a href="/contact">Contact Us</a></li>
                 </ul>
               </div>
@@ -623,3 +640,4 @@ const Home = () => {
 };
 
 export default Home;
+
