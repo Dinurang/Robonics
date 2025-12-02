@@ -1,0 +1,252 @@
+/* App.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+}
+
+.App {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  color: #333;
+}
+
+/* Header Styles */
+.App-header {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: white;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.logo {
+  height: 80px;
+  width: 80px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+}
+
+.App-header h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.tagline {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  font-weight: 300;
+  margin-top: 0.5rem;
+}
+
+/* Main Content Styles */
+.App-main {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 0;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  width: 100%;
+  max-width: 800px;
+}
+
+.card h2 {
+  color: #2d3748;
+  margin-bottom: 1rem;
+  font-size: 2.2rem;
+}
+
+.card p {
+  color: #4a5568;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+/* Counter Section */
+.counter-section {
+  text-align: center;
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+  border-radius: 15px;
+}
+
+.counter-btn {
+  background: #ffffff;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  color: #2d3748;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.counter-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.counter-btn:active {
+  transform: translateY(0);
+}
+
+.counter-hint {
+  margin-top: 0.5rem;
+  color: #fff;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* Features Section */
+.features {
+  margin: 2.5rem 0;
+  padding: 1.5rem;
+  background: #f7fafc;
+  border-radius: 15px;
+}
+
+.features h3 {
+  color: #2d3748;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+
+.feature-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.feature-list li {
+  padding: 0.8rem 0;
+  font-size: 1.1rem;
+  color: #4a5568;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.feature-list li:before {
+  content: '✓';
+  color: #48bb78;
+  font-weight: bold;
+}
+
+/* Links Section */
+.links {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.link {
+  padding: 0.8rem 1.8rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+}
+
+/* Footer Styles */
+.App-footer {
+  text-align: center;
+  padding: 2rem;
+  color: white;
+  margin-top: 3rem;
+}
+
+.App-footer p {
+  margin: 0.5rem 0;
+  opacity: 0.9;
+}
+
+.footer-note {
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .App {
+    padding: 1rem;
+  }
+
+  .App-header h1 {
+    font-size: 2.5rem;
+  }
+
+  .logo-container {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .logo {
+    height: 60px;
+    width: 60px;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+
+  .links {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .link {
+    width: 100%;
+    max-width: 250px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .App-header h1 {
+    font-size: 2rem;
+  }
+
+  .card h2 {
+    font-size: 1.8rem;
+  }
+
+  .counter-btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+}
