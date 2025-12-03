@@ -125,11 +125,12 @@ export default function AppRoutes() {
         } />
 
         {/* Protected Dashboard Routes */}
-        <Route path="/user/dashboard" element={
-          <PrivateRoute allowedRoles={['User', 'user']}>
-            <UserDashboard />
-          </PrivateRoute>
-        } />
+
+        <Route path="/user/dashboard/*" element={
+            <PrivateRoute allowedRoles={['User', 'user']}>
+              <UserDashboard />
+            </PrivateRoute>
+          }/>
 
         <Route path="/admin/dashboard" element={
           <PrivateRoute allowedRoles={['Administrator', 'Admin', 'administrator', 'admin']}>
