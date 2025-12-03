@@ -1,9 +1,9 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import ReactDOM from "react-dom/client";
+import { AuthProvider } from "./commonend/auth.jsx";
 import AppRoutes from './RoutePath.jsx'
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <AuthProvider>
     <AppRoutes />
-  </StrictMode>,
-)
+  </AuthProvider>
+);

@@ -4,6 +4,7 @@ import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 const app = express();
+import { authenticateToken, isAdmin } from "./routes/middleware/middleware.js";
 
 // Enable CORS for all routes
 app.use(cors());
@@ -12,18 +13,33 @@ app.use(express.urlencoded({ extended: true })); // replaces body-parser.urlenco
 
 
 
-// common routes
 
-// import FrontOfficeLogin from "./routes/FrontDesk/FrontOfficeLogin.js";
-// app.use("/frontofficelogin", FrontOfficeLogin);
+// Common routes 
+import registerRoute from "./routes/userend/register.js";
+app.use("/register", registerRoute);
+import loginRoute from "./routes/commonend/login.js";
+app.use("/login", loginRoute);
 
 
 
-//user routes
+
+
+
+
+// User routes 
+
+
+
 
 
 
 //admin routes
+
+
+
+
+
+//owner routes
 
 
 
