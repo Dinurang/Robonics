@@ -33,8 +33,6 @@ router.get('/', authenticateToken, async (req, res) => {
 // POST a new project booking
 router.post('/', authenticateToken, async (req, res) => {
 
-  console.log("🟦 RAW BODY:", req.body);
-  console.log("🟦 HEADERS:", req.headers);
 
   try {
     const userId = req.user.userID || req.user.id || req.user.userId || req.user.userid;
