@@ -1,18 +1,20 @@
-// pages/AdminDashboard.jsx
+// pages/UserDashboard.jsx
 import React from 'react';
 import { useAuth } from '../commonend/auth.jsx';
 
-const AdminDashboard = () => {
+const UserDashboard = () => {
     const { user, logout } = useAuth();
 
     return (
         <div className="dashboard-container">
-            <h1>Admin Dashboard</h1>
-            <p>Welcome, Owner {user?.username}!</p>
-            <p>You have Ownership privileges.</p>
-            <button onClick={logout} className="btn btn-danger">Logout</button>
+            <h1>Welcome to Your Dashboard, {user?.username}!</h1>
+            <p>Role: {user?.role}</p>
+            <p>Email: {user?.email}</p>
+            <p>WhatsApp: {user?.whatsappNo}</p>
+            <p>Address: {user?.postalAddress}</p>
+            <button onClick={logout} className="btn btn-primary">Logout</button>
         </div>
     );
 };
 
-export default AdminDashboard;
+export default UserDashboard;

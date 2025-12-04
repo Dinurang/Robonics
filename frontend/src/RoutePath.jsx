@@ -14,6 +14,12 @@ import AdminDashboard from './adminend/adminDashboard';
 import OwnerDashboard from './ownerend/ownerDashboard';
 import DashboardRedirect from "./commonend/dashboardRedirect.jsx";
 
+// Import UserDashboard nested components
+import DashboardHome from './userend/dashboardHome.jsx';
+import Profile from './userend/userProfile.jsx';
+import Orders from './userend/userOrders.jsx';
+import Book from './userend/userBook.jsx';
+
 
 
 // Loading component
@@ -125,12 +131,22 @@ export default function AppRoutes() {
         } />
 
         {/* Protected Dashboard Routes */}
-
-        <Route path="/user/dashboard/*" element={
-            <PrivateRoute allowedRoles={['User', 'user']}>
-              <UserDashboard />
-            </PrivateRoute>
-          }/>
+        
+        {/* User Dashboard with Nested Routes */}
+        <Route path="/user/dashboard" element={
+          <PrivateRoute allowedRoles={['User', 'user']}>
+            <UserDashboard />
+          </PrivateRoute>
+        }>
+          {/* Nested routes for UserDashboard */}
+          <Route index element={<DashboardHome />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="orders" element={<Orders />} />
+          <Route path="book" element={<Book />} />
+          
+          {/* Redirect unknown nested paths to dashboard home */}
+          <Route path="*" element={<Navigate to="/user/dashboard" replace />} />
+        </Route>
 
         <Route path="/admin/dashboard" element={
           <PrivateRoute allowedRoles={['Administrator', 'Admin', 'administrator', 'admin']}>
