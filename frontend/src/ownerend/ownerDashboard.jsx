@@ -2,11 +2,8 @@ import React from "react";
 import { Link, Routes, Route, Navigate } from "react-router-dom";
 import { useAuth } from "../commonend/auth.jsx";
 
-
 import DashboardHome from "./dashboardHome.jsx";
-import Orders from "./adminOrders.jsx";
-
-
+import Orders from "./ownerOrders.jsx";
 
 
 const UserDashboard = () => {

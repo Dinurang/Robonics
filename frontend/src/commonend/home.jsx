@@ -1,4 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../commonend/auth.jsx';
 
 // Import your images
 import logo from '../../assets/logo.png';
@@ -7,12 +9,15 @@ import robotArm from '../../assets/robotarm.png';
 import obstacleRobot from '../../assets/obstaclerobot.png';
 
 const Home = () => {
+  const { isAuthenticated, user, logout } = useAuth();
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const navigate = useNavigate();
+  
   // Initialize AOS animations
   useEffect(() => {
     const initAOS = async () => {
       if (typeof window !== 'undefined') {
         const AOS = (await import('aos')).default;
-        const AOSStyles = await import('aos/dist/aos.css');
         AOS.init({
           duration: 1000,
           once: true,
@@ -22,51 +27,137 @@ const Home = () => {
     initAOS();
   }, []);
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownOpen && !event.target.closest('.dropdown-custom-container')) {
+        setDropdownOpen(false);
+      }
+    };
+    
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [dropdownOpen]);
+
+  const handleAccountClick = (e) => {
+    e.preventDefault();
+    setDropdownOpen(!dropdownOpen);
+  };
+
+  const handleDashboardClick = () => {
+    setDropdownOpen(false);
+    navigate('/dashboard');
+  };
+
+  const handleLogout = () => {
+    setDropdownOpen(false);
+    logout();
+  };
+
   return (
     <>
       {/* Add Fonts and external CSS */}
       <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
       <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
       <div className="home-container">
         {/* Navigation */}
         <nav className="navbar navbar-expand-lg navbar-dark px-4 home-nav">
           <div className="container-fluid">
             {/* Logo only with rounded border */}
-            <a className="navbar-brand" href="/">
+            <Link className="navbar-brand" to="/">
               <img src={logo} alt="Robonics Logo" className="logo-only" />
-            </a>
+            </Link>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
               <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav ms-auto">
                 <li className="nav-item">
-                  <a className="nav-link active" href="/">Home</a>
+                  <Link className="nav-link active" to="/">Home</Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/about">About</a>
+                  <Link className="nav-link" to="/about">About</Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/projects">Projects</a>
+                  <Link className="nav-link" to="/projects">Projects</Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/pricing">Pricing</a>
+                  <Link className="nav-link" to="/pricing">Pricing</Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/contact">Contact</a>
+                  <Link className="nav-link" to="/contact">Contact</Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/book">Book</a>
+                  <Link className="nav-link" to="/book">Book</Link>
                 </li>
-                {/* Auth Buttons with different styling */}
-                <li className="nav-item auth-buttons">
-                  <a className="nav-link btn-login" href="/login">Log In</a>
-                </li>
-                <li className="nav-item auth-buttons">
-                  <a className="nav-link btn-signup" href="/register">Register</a>
-                </li>
+                
+                {/* Conditional Auth Buttons - USING CUSTOM DROPDOWN */}
+                {!isAuthenticated ? (
+                  <>
+                    <li className="nav-item auth-buttons">
+                      <Link className="nav-link btn-login" to="/login">
+                        <i className="fas fa-sign-in-alt me-2"></i>
+                        Log In
+                      </Link>
+                    </li>
+                    <li className="nav-item auth-buttons">
+                      <Link className="nav-link btn-signup" to="/register">
+                        <i className="fas fa-user-plus me-2"></i>
+                        Register
+                      </Link>
+                    </li>
+                  </>
+                ) : (
+                  <li className="nav-item dropdown-custom-container auth-buttons" style={{ position: 'relative' }}>
+                    <button 
+                      className="nav-link btn-myaccount"
+                      onClick={handleAccountClick}
+                      style={{
+                        background: 'none',
+                        border: 'none',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        padding: '0.5rem 1.5rem',
+                        margin: '0 5px',
+                        borderRadius: '25px',
+                        fontWeight: '600',
+                        color: 'white'
+                      }}
+                    >
+                      <i className="fas fa-user-circle me-2"></i>
+                      Account
+                      <i className={`fas fa-chevron-${dropdownOpen ? 'up' : 'down'} ms-2`} style={{ fontSize: '0.8rem' }}></i>
+                    </button>
+                    
+                    {dropdownOpen && (
+                       <div className="dropdown-custom-menu">
+                        <Link 
+                          className="dropdown-custom-item" 
+                          to="/dashboard"
+                          onClick={handleDashboardClick}
+                        >
+                          <i className="fas fa-home me-2"></i>
+                          Dashboard
+                        </Link>
+                        
+                        <div className="dropdown-custom-divider"></div>
+                        <button 
+                          className="dropdown-custom-item text-danger" 
+                          onClick={handleLogout}
+                        >
+                          <i className="fas fa-sign-out-alt me-2"></i>
+                          Logout
+                        </button>
+                      </div>
+                    )}
+                  </li>
+                )}
               </ul>
             </div>
           </div>
@@ -87,12 +178,13 @@ const Home = () => {
                   We build cutting-edge robotic solutions that transform industries and enhance everyday life through artificial intelligence and innovative engineering.
                 </p>
                 <div className="hero-buttons mt-4">
-                  <a href="/projects" className="btn btn-primary me-3">
+                  <Link to="/projects" className="btn btn-primary me-3">
                     Explore Projects
-                  </a>
-                  <a href="/contact" className="btn btn-outline-light">
+                  </Link>
+                  {/* CORRECTED: Using /dashboard for authenticated users */}
+                  <Link to={isAuthenticated ? "/dashboard" : "/login"} className="btn btn-outline-light">
                     Get Started
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div className="col-lg-6" data-aos="fade-left">
@@ -180,7 +272,6 @@ const Home = () => {
                   <p>Prototype parts for developments and projects.</p>
                 </div>
               </div>
-
             </div>
           </div>
         </section>
@@ -193,12 +284,12 @@ const Home = () => {
               Join the community of satisfied clients who have transformed their requirements with Robonics solutions.
             </p>
             <div className="cta-buttons">
-              <a href="/contact" className="btn btn-lg btn-primary me-3">
+              <Link to="/contact" className="btn btn-lg btn-primary me-3">
                 Start Your Project
-              </a>
-              <a href="/pricing" className="btn btn-lg btn-primary me-3">
+              </Link>
+              <Link to="/pricing" className="btn btn-lg btn-primary me-3">
                 View Pricing
-              </a>
+              </Link>
             </div>
           </div>
         </section>
@@ -210,18 +301,17 @@ const Home = () => {
               <div className="col-md-4">
                 <div className="footer-brand d-flex align-items-center mb-3">
                   <img src={logo} alt="Robonics Logo" className="logo-only me-2" />
-                  
                 </div>
                 <p>Leading the innovation in robotics and 3D drawing solutions.</p>
               </div>
               <div className="col-md-4">
                 <h5>Quick Links</h5>
                 <ul className="footer-links">
-                  <li><a href="/about">About Us</a></li>
-                  <li><a href="/projects">Our Projects</a></li>
-                  <li><a href="/pricing">Our Pricing</a></li>
-                  <li><a href="/book">Get a Quote</a></li>
-                  <li><a href="/contact">Contact Us</a></li>
+                  <li><Link to="/about">About Us</Link></li>
+                  <li><Link to="/projects">Our Projects</Link></li>
+                  <li><Link to="/pricing">Our Pricing</Link></li>
+                  <li><Link to="/book">Get a Quote</Link></li>
+                  <li><Link to="/contact">Contact Us</Link></li>
                 </ul>
               </div>
               <div className="col-md-4">
@@ -262,7 +352,6 @@ const Home = () => {
           height: 190px;
           width: 250px;
           border-radius: 12px;
-          
           padding: 4px;
           background: linear-gradient(145deg, #222238, #1a1a2e);
           box-shadow: 0 4px 12px rgba(155, 89, 182, 0.3);
@@ -282,6 +371,7 @@ const Home = () => {
           padding: 0.5rem 1rem;
           transition: all 0.3s ease;
           margin: 0 5px;
+          text-decoration: none !important;
         }
 
         .nav-link.active {
@@ -290,7 +380,7 @@ const Home = () => {
           border-bottom: 2px solid #9b59b6;
         }
 
-        .nav-link:hover:not(.btn-login):not(.btn-signup) {
+        .nav-link:hover:not(.btn-login):not(.btn-signup):not(.btn-myaccount) {
           color: #ffffff !important;
           transform: translateY(-2px);
         }
@@ -312,6 +402,8 @@ const Home = () => {
           margin: 0 5px !important;
           transition: all 0.3s ease !important;
           font-weight: 600 !important;
+          text-decoration: none !important;
+          display: inline-block;
         }
 
         .btn-login:hover {
@@ -333,6 +425,8 @@ const Home = () => {
           transition: all 0.3s ease !important;
           font-weight: 600 !important;
           box-shadow: 0 4px 12px rgba(46, 204, 113, 0.3) !important;
+          text-decoration: none !important;
+          display: inline-block;
         }
 
         .btn-signup:hover {
@@ -340,6 +434,99 @@ const Home = () => {
           transform: translateY(-2px) !important;
           box-shadow: 0 6px 20px rgba(46, 204, 113, 0.4) !important;
           color: white !important;
+        }
+
+        /* My Account Button */
+        .btn-myaccount {
+          background: linear-gradient(45deg, #9b59b6, #8e44ad) !important;
+          border: none !important;
+          border-radius: 25px !important;
+          color: white !important;
+          padding: 0.5rem 1.5rem !important;
+          margin: 0 5px !important;
+          transition: all 0.3s ease !important;
+          font-weight: 600 !important;
+          box-shadow: 0 4px 12px rgba(155, 89, 182, 0.3) !important;
+          text-decoration: none !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+        }
+
+        .btn-myaccount:hover {
+          background: linear-gradient(45deg, #8e44ad, #9b59b6) !important;
+          transform: translateY(-2px) !important;
+          box-shadow: 0 6px 20px rgba(155, 89, 182, 0.4) !important;
+          color: white !important;
+        }
+
+        /* Custom Dropdown Styles */
+        .dropdown-custom-menu {
+          position: absolute;
+          top: 100%;
+          right: 0;
+          z-index: 1000;
+          min-width: 240px;
+          background: linear-gradient(145deg, #222238, #1a1a2e);
+          border: 1px solid rgba(155, 89, 182, 0.3);
+          border-radius: 10px;
+          padding: 0.75rem 0;
+          box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+          margin-top: 8px;
+          animation: dropdownFadeIn 0.2s ease-out;
+        }
+
+        @keyframes dropdownFadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .dropdown-custom-header {
+          padding: 0.75rem 1.5rem;
+          border-bottom: 1px solid rgba(155, 89, 182, 0.2);
+          margin-bottom: 0.5rem;
+        }
+
+        .dropdown-custom-item {
+          display: flex;
+          align-items: center;
+          padding: 0.75rem 1.5rem;
+          color: #c0bfff;
+          text-decoration: none;
+          transition: all 0.2s ease;
+          border: none;
+          background: none;
+          width: 100%;
+          text-align: left;
+          font-size: 0.95rem;
+          cursor: pointer;
+        }
+
+        .dropdown-custom-item:hover {
+          background: rgba(155, 89, 182, 0.1);
+          color: #ffffff;
+          padding-left: 2rem;
+        }
+
+        .dropdown-custom-divider {
+          height: 1px;
+          background: rgba(155, 89, 182, 0.2);
+          margin: 0.5rem 0;
+        }
+
+        .badge.bg-purple {
+          background: linear-gradient(45deg, #9b59b6, #8e44ad) !important;
+          color: white;
+          padding: 0.25rem 0.75rem;
+          border-radius: 20px;
+          font-size: 0.75rem;
+          font-weight: 600;
         }
 
         /* Hero Section */
@@ -394,12 +581,15 @@ const Home = () => {
           border-radius: 50px;
           font-weight: 600;
           transition: all 0.3s ease;
+          text-decoration: none;
+          display: inline-block;
         }
 
         .btn-primary {
           background: linear-gradient(45deg, #9b59b6, #8e44ad);
           border: none;
           box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3);
+          color: white !important;
         }
 
         .btn-primary:hover {
@@ -410,13 +600,14 @@ const Home = () => {
 
         .btn-outline-light {
           border: 2px solid #8e44ad;
-          color: #8e44ad;
+          color: #8e44ad !important;
+          background: transparent;
         }
 
         .btn-outline-light:hover {
           background: linear-gradient(45deg, #9b59b6, #8e44ad);
           border-color: transparent;
-          color: white;
+          color: white !important;
         }
 
         .hero-image-container {
@@ -524,6 +715,8 @@ const Home = () => {
           border-radius: 50px;
           font-weight: 600;
           transition: all 0.3s ease;
+          text-decoration: none;
+          display: inline-block;
         }
 
         /* Footer */
@@ -531,11 +724,6 @@ const Home = () => {
           background: #12121a;
           color: #aaaaff;
           padding: 3rem 0 1rem;
-        }
-
-        .footer-brand h5 {
-          color: #d1b3ff;
-          margin: 0;
         }
 
         .footer-links {
@@ -597,9 +785,25 @@ const Home = () => {
             margin-top: 10px;
           }
           
-          .btn-login, .btn-signup {
+          .btn-login, .btn-signup, .btn-myaccount {
             display: inline-block;
             margin: 5px !important;
+            font-size: 0.9rem !important;
+            padding: 0.4rem 1rem !important;
+          }
+          
+          .logo-only {
+            height: 150px;
+            width: 200px;
+          }
+          
+          .dropdown-custom-menu {
+            position: fixed;
+            top: auto;
+            right: 10px;
+            left: 10px;
+            width: calc(100% - 20px);
+            margin-top: 5px;
           }
         }
 
@@ -634,10 +838,8 @@ const Home = () => {
           text-align: center !important;
         }
       `}</style>
-      {/* ========== STYLES END HERE ========== */}
     </>
   );
 };
 
 export default Home;
-

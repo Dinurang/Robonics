@@ -2,28 +2,48 @@ import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
 import cors from "cors";
-import bodyParser from "body-parser";
+
 const app = express();
 
-// Enable CORS for all routes
+// ---- ESSENTIAL ORDER ----
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
-app.use(bodyParser.json());
-app.use(express.urlencoded({ extended: true })); // replaces body-parser.urlencoded()
+
+
+//middleware
+import { authenticateToken, isAdmin } from "./routes/middleware/middleware.js";
+
+
+// Common routes 
+import registerRoute from "./routes/userend/register.js";
+app.use("/register", registerRoute);
+import loginRoute from "./routes/commonend/login.js";
+app.use("/login", loginRoute);
 
 
 
-// common routes
-
-// import FrontOfficeLogin from "./routes/FrontDesk/FrontOfficeLogin.js";
-// app.use("/frontofficelogin", FrontOfficeLogin);
 
 
 
-//user routes
+
+// User routes 
+import userProfileRoutes from "./routes/userend/userProfile.js";
+app.use("/user/profile", userProfileRoutes);
+import userBook from "./routes/userend/userBook.js";
+app.use("/user/book", userBook);
+import userOrders from './routes/userend/userOrders.js';
+app.use('/user/orders', userOrders);
 
 
 
 //admin routes
+
+
+
+
+
+//owner routes
 
 
 

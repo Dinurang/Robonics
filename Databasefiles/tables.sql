@@ -1,11 +1,11 @@
--- drop table project;
--- drop table user;
--- drop table project_documentation_files;
--- drop table payment_proof_files;
--- drop table payment;
--- drop table pricing;
--- drop table project_data;
--- drop table admin;
+drop table project;
+drop table user;
+drop table project_documentation_files;
+drop table payment_proof_files;
+drop table payment;
+drop table pricing;
+drop table project_data;
+drop table admin;
 
 -- Users table
 CREATE TABLE user (
@@ -43,13 +43,32 @@ CREATE TABLE payment_proof_files (
 );
 
 CREATE TABLE project_documentation_files (
-    fileID INT AUTO_INCREMENT PRIMARY KEY,
-    gdrive_file_id VARCHAR(255) NOT NULL,   -- Google Drive File ID
-    original_name VARCHAR(255) NOT NULL,
-    mime_type VARCHAR(100),
+    projectID INT PRIMARY KEY,
+    gdrive_file_id VARCHAR(255),   -- Google Drive File ID
+    original_name VARCHAR(255),
     file_sizeMB INT,
     uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+
+drop table project_documentation_files;
+
+CREATE TABLE IF NOT EXISTS project_documentation_files (
+  fileID INT AUTO_INCREMENT PRIMARY KEY,
+  projectID INT NOT NULL,
+  original_name VARCHAR(255) NOT NULL,
+  file_sizeMB DECIMAL(10,2) NOT NULL,
+  uploaded_at DATETIME NOT NULL,
+  drive_file_id VARCHAR(255),
+  drive_view_link TEXT,
+  FOREIGN KEY (projectID) REFERENCES project(projectID) ON DELETE CASCADE
+);
+
+
+
+
+
+
 
 
 
@@ -72,9 +91,6 @@ CREATE TABLE project_data (
     description TEXT,
     required_deadline DATE,
     deliverymode VARCHAR(20),
-    projectdocumentation_id INT,
-    FOREIGN KEY (projectID) REFERENCES project(projectID),
-    FOREIGN KEY (projectdocumentation_id) REFERENCES project_documentation_files(fileID)
 );
 
 -- Admin table
