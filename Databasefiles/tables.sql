@@ -51,6 +51,26 @@ CREATE TABLE project_documentation_files (
 );
 
 
+drop table project_documentation_files;
+
+CREATE TABLE IF NOT EXISTS project_documentation_files (
+  fileID INT AUTO_INCREMENT PRIMARY KEY,
+  projectID INT NOT NULL,
+  original_name VARCHAR(255) NOT NULL,
+  file_sizeMB DECIMAL(10,2) NOT NULL,
+  uploaded_at DATETIME NOT NULL,
+  drive_file_id VARCHAR(255),
+  drive_view_link TEXT,
+  FOREIGN KEY (projectID) REFERENCES project(projectID) ON DELETE CASCADE
+);
+
+
+
+
+
+
+
+
 
 
 -- Payments table

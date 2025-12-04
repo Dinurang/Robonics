@@ -1,4 +1,5 @@
--- NOTE: prototype password  = qweasd
+-- NOTE: prototype password  = qweasd   <--
+
 -- It is BCRYPT hashed and stored below.
 
 
