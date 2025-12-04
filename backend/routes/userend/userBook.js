@@ -6,6 +6,7 @@ import { authenticateToken } from '../middleware/middleware.js';
 const router = express.Router();
 
 // GET all projects for the logged-in user
+
 router.get('/', authenticateToken, async (req, res) => {
   try {
     const userId = req.user.userID || req.user.id || req.user.userId || req.user.userid;
