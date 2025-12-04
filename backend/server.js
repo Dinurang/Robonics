@@ -27,8 +27,10 @@ app.use("/login", loginRoute);
 
 
 // User routes 
-
-
+import userProfileRoutes from "./routes/userend/userProfile.js";
+app.use("/user/profile", userProfileRoutes);
+import userBook from "./routes/userend/userBook.js";
+app.use("/user/book", userBook);
 
 
 

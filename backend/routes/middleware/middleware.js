@@ -1,4 +1,4 @@
-// middleware/authMiddleware.js
+// routes/middleware/middleware.js
 import jwt from "jsonwebtoken";
 
 // Middleware to authenticate JWT token
@@ -27,35 +27,41 @@ export const authenticateToken = (req, res, next) => {
 
 // Middleware to check if user is admin
 export const isAdmin = (req, res, next) => {
-    if (req.user.role !== "Admin") {
+    if (req.user.role !== "Admin" && req.user.role !== "Administrator") {
         return res.status(403).json({
             success: false,
-            message: "Access denied"
+            message: "Access denied. Admin privileges required."
         });
     }
     next();
 };
 
-
-// Middleware to check if user is admin
+// Middleware to check if user is regular user
 export const isUser = (req, res, next) => {
     if (req.user.role !== "User") {
         return res.status(403).json({
             success: false,
-            message: "Access denied"
+            message: "Access denied. User privileges required."
         });
     }
     next();
 };
 
-
-// Middleware to check if user is admin
+// Middleware to check if user is owner
 export const isOwner = (req, res, next) => {
     if (req.user.role !== "Owner") {
         return res.status(403).json({
             success: false,
-            message: "Access denied"
+            message: "Access denied. Owner privileges required."
         });
     }
     next();
+};
+
+// Optional: Export as default object
+export default {
+    authenticateToken,
+    isAdmin,
+    isUser,
+    isOwner
 };
