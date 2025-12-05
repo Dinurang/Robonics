@@ -55,10 +55,10 @@ drop table project_documentation_files;
 
 CREATE TABLE IF NOT EXISTS project_documentation_files (
   fileID INT AUTO_INCREMENT PRIMARY KEY,
-  projectID INT ,
+  projectID INT NOT NULL,
   original_name VARCHAR(255) ,
   file_sizeMB DECIMAL(10,2) ,
-  uploaded_at DATETIME,
+  uploaded_at DATETIME ,
   drive_file_id VARCHAR(255),
   drive_view_link TEXT,
   FOREIGN KEY (projectID) REFERENCES project(projectID) ON DELETE CASCADE
