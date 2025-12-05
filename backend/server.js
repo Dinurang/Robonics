@@ -14,6 +14,11 @@ app.use(cors());
 //middleware
 import { authenticateToken, isAdmin } from "./routes/middleware/middleware.js";
 
+import googleAuthRoutes from './routes/googleAuth.js';
+app.use('/auth/google', googleAuthRoutes);
+// Visit http://localhost:5000/auth/google/login
+
+
 
 // Common routes 
 import registerRoute from "./routes/userend/register.js";
