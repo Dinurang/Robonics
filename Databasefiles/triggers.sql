@@ -12,3 +12,4 @@ END$$
 DELIMITER ;
 
 
+drop trigger after_project_insert;
