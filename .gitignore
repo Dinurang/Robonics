@@ -1,2 +1,4 @@
 node_modules/
 .env
+oauth_client.json
+token.json

@@ -89,7 +89,7 @@ CREATE TABLE project_data (
     projectID INT PRIMARY KEY,
     description TEXT,
     required_deadline DATE,
-    deliverymode VARCHAR(20),
+    deliverymode VARCHAR(20)
 );
 
 -- Admin table

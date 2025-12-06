@@ -48,6 +48,7 @@ END$$
 DELIMITER ;
 
 
+<<<<<<< HEAD
 -- Trigger 3: When payment.paymentdate is updated, update project.payment_date for the same projectID
 CREATE TRIGGER update_project_paymentdate
 AFTER UPDATE ON robonics_db.payment
@@ -79,3 +80,4 @@ BEGIN
 END$$
 
 DELIMITER ;
+
