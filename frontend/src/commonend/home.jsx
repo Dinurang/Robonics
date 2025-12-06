@@ -139,7 +139,7 @@ const Home = () => {
                        <div className="dropdown-custom-menu">
                         <Link 
                           className="dropdown-custom-item" 
-                          to="/dashboard"
+                          to="/dashboard" 
                           onClick={handleDashboardClick}
                         >
                           <i className="fas fa-home me-2"></i>
@@ -189,7 +189,7 @@ const Home = () => {
               </div>
               <div className="col-lg-6" data-aos="fade-left">
                 <div className="hero-image-container">
-                  <img src={robotCar} alt="Robotics Car" className="hero-image" />
+                  <img src={logo} alt="logo" className="hero-image" />
                 </div>
               </div>
             </div>
@@ -284,7 +284,7 @@ const Home = () => {
               Join the community of satisfied clients who have transformed their requirements with Robonics solutions.
             </p>
             <div className="cta-buttons">
-              <Link to="/contact" className="btn btn-lg btn-primary me-3">
+              <Link to="/login" className="btn btn-lg btn-primary me-3">
                 Start Your Project
               </Link>
               <Link to="/pricing" className="btn btn-lg btn-primary me-3">

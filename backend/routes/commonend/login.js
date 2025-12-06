@@ -37,7 +37,7 @@ router.post("/", async (req, res) => {
             role: admin.role
           },
           process.env.JWT_SECRET,
-          { expiresIn: "7d" }
+          { expiresIn: "1d" }
         );
 
         return res.json({
