@@ -20,7 +20,8 @@ import registerRoute from "./routes/userend/register.js";
 app.use("/register", registerRoute);
 import loginRoute from "./routes/commonend/login.js";
 app.use("/login", loginRoute);
-
+import pricingRoute from "./routes/commonend/pricing.js";
+app.use("/pricing", pricingRoute);
 
 
 
@@ -38,13 +39,18 @@ app.use('/user/orders', userOrders);
 
 
 //admin routes
-
-
-
-
+import ViewOrders from './routes/adminend/viewOrders.js';
+app.use('/admin/vieworders', ViewOrders);
+import UpdateOrders from './routes/adminend/updateOrders.js';
+app.use('/admin/updateorders', UpdateOrders);
+import UpdatePricing from './routes/adminend/updatePricing.js';
+app.use('/admin/updatepricing', UpdatePricing);
+import ViewPayments from './routes/adminend/viewPayments.js';
+app.use('/admin/viewpayments', ViewPayments);
 
 //owner routes
-
+import ManageStaff from './routes/ownerend/manageStaff.js';
+app.use('/admin/managestaff', ManageStaff);
 
 
 

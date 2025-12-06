@@ -1,0 +1,1 @@
+Owner dashboard is same as admin dashboard. exclusive manage staff feature is unlocked for owner.

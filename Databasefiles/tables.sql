@@ -35,6 +35,7 @@ CREATE TABLE project (
 
 CREATE TABLE payment_proof_files (
     fileID INT AUTO_INCREMENT PRIMARY KEY,
+    projectID INT,
     gdrive_file_id VARCHAR(255) NOT NULL,   -- Google Drive File ID
     original_name VARCHAR(255) NOT NULL,    -- original uploaded filename
     mime_type VARCHAR(100),
@@ -80,9 +81,7 @@ CREATE TABLE payment (
     dueamount NUMERIC(10,2),
     status VARCHAR(20),
     paymentdate DATETIME,
-    paymentproof_id INT,
-    FOREIGN KEY (projectID) REFERENCES project(projectID),
-    FOREIGN KEY (paymentproof_id) REFERENCES payment_proof_files(fileID)
+    FOREIGN KEY (projectID) REFERENCES project(projectID)
 );
 
 -- Project data table
