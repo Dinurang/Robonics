@@ -32,7 +32,7 @@ Before running the project, ensure all required dependencies are installed in th
     cd ..
     ```
 3. **Install FrontEnd Dependencies**:
-    Navigate to the `FrontEnd` directory and install dependencies:
+    In a new terminal, Navigate to the `FrontEnd` directory and install dependencies:
     ```bash
     cd Frontend
     npm install
